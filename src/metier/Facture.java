@@ -20,7 +20,7 @@ public class Facture
 	}
 
 	/**
-	 * Retourne le client à qui est adressée la facture..
+	 * Retourne le client Ã  qui est adressÃ©e la facture..
 	 * @return le client.
 	 */
 	
@@ -40,8 +40,8 @@ public class Facture
 	}
 
 	/**
-	 * Retourne vrai si la facture est reglée.
-	 * @return vrai ssi la facture est reglée.
+	 * Retourne vrai si la facture est reglÃ©e.
+	 * @return vrai ssi la facture est reglÃ©e.
 	 */
 	
 	public boolean estReglee() 
@@ -72,7 +72,7 @@ public class Facture
 	 * @return une copie de la facture.
 	 */
 	
-	public Facture copy()
+	public Facture copie()
 	{
 		return client.createFacture(getMontant());
 	}
