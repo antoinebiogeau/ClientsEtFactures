@@ -1,11 +1,15 @@
 package metier;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Client
 {
 	public String nom;
+	private List<Facture> factures = new ArrayList<Facture>();
+	private static List<Client> clients = new ArrayList<Client>();
 	/** 
 	 * Crée un client.
 	 * @param nom le nom du client. 
@@ -14,6 +18,7 @@ public class Client
 	public Client(String nom)
 	{
 		this.nom = nom;
+		clients.add(this);
 	}
 
 	/**
@@ -44,7 +49,16 @@ public class Client
 	
 	public Facture createFacture(int montant)
 	{
-		return null;
+		if (montant < 0) {
+			System.out.println("Le montant d'une facture ne peut pas être négatif.");
+			return null;
+		}
+		else 
+		{
+			Facture facture = new Facture(montant, this, false, LocalDate.now());
+			factures.add(facture);
+			return facture;
+		}
 	}
 	
 	/**
@@ -54,7 +68,8 @@ public class Client
 
 	public List<Facture> getFactures()
 	{
-		return null;
+		List<Facture> Facture = new ArrayList<Facture>(factures);
+		return Facture;
 	}
 	
 	/**
@@ -64,19 +79,33 @@ public class Client
 	
 	public int sommeMontants()
 	{
-		return 0;
+		int montant=0;
+		for(int i = 0;i<factures.size();i++)
+		{
+			montant=montant+factures.get(i).getMontant();
+		}
+		return montant;
 	}
 
 	/**
 	 * Créé une facture en précisant si elle est reglée.
-	 * @param montant Le montant de la facture.
-	 * @param reglee Vrai si la facture est reglée.
+	 * param montant Le montant de la facture.
+	 * param estreglee() Vrai si la facture est reglée.
 	 * @return la facture créée.
 	 */
-	
-	public Facture createFacture(int montant, boolean reglee)
+
+	public Facture createFacture(int montant, boolean estreglee)
 	{
-		return null;
+		if (montant < 0) {
+			System.out.println("Le montant d'une facture ne peut pas être négatif.");
+			return null;
+		}
+		else 
+		{
+			Facture facture = new Facture(montant, this, estreglee, LocalDate.now());
+			factures.add(facture);
+			return facture;
+		}
 	}	
 	
 	/**
@@ -84,11 +113,19 @@ public class Client
 	 * @return la liste des factures reglées.
 	 */
 
-	public List<Facture> facturesReglees()
+	public List<Facture> getFacturesReglees()
 	{
-		return null;
+
+		List<Facture> Facture = new ArrayList<Facture>();
+		for(int i = 0;i<factures.size();i++)
+		{
+			if(factures.get(i).estReglee)
+			{
+				Facture.add(factures.get(i));
+			}
+		}
+		return Facture;
 	}
-	
 
 	/**
 	 * Retourne tous les clients créés.
@@ -96,7 +133,7 @@ public class Client
 	 */
 	public static List<Client> tous()
 	{
-		return null;
+		return new ArrayList<Client>(clients);
 	}
 	
 	/**
@@ -105,5 +142,10 @@ public class Client
 	
 	public void delete()
 	{
+		clients.remove(this);
+	}
+
+	public void deleteFacture(Facture facture) {
+		factures.remove(facture);
 	}
 }

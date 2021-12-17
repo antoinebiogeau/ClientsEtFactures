@@ -14,7 +14,7 @@ class TestFacture
 {
 	private Client marcel, gertrude;
 	private Facture factureMarcel1, factureMarcel2, factureGertrude;
-	
+
 	@BeforeEach
 	private void setUp()
 	{
@@ -24,7 +24,7 @@ class TestFacture
 		factureMarcel2 = marcel.createFacture(3);
 		factureGertrude = gertrude.createFacture(5);
 	}
-	
+
 
 	@Test
 	void testGetClient()
@@ -57,11 +57,11 @@ class TestFacture
 		assertEquals(LocalDate.now(), factureMarcel2.getDate());
 		assertEquals(LocalDate.now(), factureGertrude.getDate());
 	}
-	
+
 	@Test
 	void testCopie()
 	{
-		Facture copieFactureMarcel1 = factureMarcel1.copie();
+		Facture copieFactureMarcel1 = factureMarcel1.copy();
 		assertEquals(factureMarcel1.getDate(), copieFactureMarcel1.getDate());
 		assertEquals(factureMarcel1.getMontant(), copieFactureMarcel1.getMontant());
 		assertNotEquals(copieFactureMarcel1, factureMarcel1);
@@ -70,7 +70,7 @@ class TestFacture
 		assertTrue(marcel.getFactures().contains(factureMarcel2));
 		assertTrue(marcel.getFactures().contains(copieFactureMarcel1));
 	}
-	
+
 	@Test
 	void testDelete()
 	{

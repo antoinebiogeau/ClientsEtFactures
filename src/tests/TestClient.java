@@ -12,28 +12,28 @@ import metier.Facture;
 class TestClient
 {
 	private Client marcel, gertrude;
-		
+
 	@BeforeEach
 	private void setup()
 	{
 		marcel = new Client("Marcel");
 		gertrude = new Client("Gertrude");
 	}
-	
+
 	@AfterEach
 	private void tearDown()
 	{
 		marcel.delete();
 		gertrude.delete();
 	}
-	
+
 
 	@Test
 	void testGetNom()
 	{
 		assertEquals("Marcel", marcel.getNom());
 		assertEquals("Gertrude", gertrude.getNom());
-	}	
+	}
 
 	@Test
 	void testSetNom()
@@ -48,8 +48,8 @@ class TestClient
 	void testCreateFacture()
 	{
 		Facture factureMarcel1 = marcel.createFacture(1),
-			factureMarcel2 = marcel.createFacture(3),
-			factureGertrude = gertrude.createFacture(5);		
+				factureMarcel2 = marcel.createFacture(3),
+				factureGertrude = gertrude.createFacture(5);
 		assertEquals(2, marcel.getFactures().size());
 		assertEquals(1, gertrude.getFactures().size());
 		assertNotEquals(factureMarcel1, factureMarcel2);
@@ -64,17 +64,17 @@ class TestClient
 	void testCreateFactureReglee()
 	{
 		Facture factureReglee = marcel.createFacture(1, true),
-			factureNonReglee = marcel.createFacture(3, false);		
+				factureNonReglee = marcel.createFacture(3, false);
 		assertTrue(factureReglee.estReglee());
 		assertFalse(factureNonReglee.estReglee());
 	}
-	
+
 	@Test
 	void testGetFactures()
 	{
 		marcel.createFacture(1);
 		marcel.createFacture(3);
-		gertrude.createFacture(5);		
+		gertrude.createFacture(5);
 		assertTrue(marcel.getFactures() != marcel.getFactures());
 		assertTrue(gertrude.getFactures() != gertrude.getFactures());
 	}
@@ -85,8 +85,8 @@ class TestClient
 		Facture factureMarcel1 = marcel.createFacture(1, true);
 		marcel.createFacture(3, false);
 		gertrude.createFacture(5, true);
-		assertEquals(1, marcel.facturesReglees().size());
-		assertTrue(marcel.facturesReglees().contains(factureMarcel1));
+		assertEquals(1, marcel.getFacturesReglees().size());
+		assertTrue(marcel.getFacturesReglees().contains(factureMarcel1));
 	}
 
 	@Test
@@ -98,7 +98,7 @@ class TestClient
 		assertEquals(3, marcel.sommeMontants());
 		assertEquals(4, gertrude.sommeMontants());
 	}
-	
+
 	@Test
 	void testTous()
 	{
@@ -117,14 +117,14 @@ class TestClient
 		gertrude.delete();
 		assertEquals(0, Client.tous().size());
 	}
-	
+
 	@Test
 	void testMontantFactureNegatif()
 	{
 		Exception factureMoins2 = assertThrows(IllegalArgumentException.class, () -> marcel.createFacture(-2));
-		assertEquals("Le montant d'une facture ne peut pas Ãªtre nÃ©gatif.", factureMoins2.getMessage());
+		assertEquals("Le montant d'une facture ne peut pas être négatif.", factureMoins2.getMessage());
 		Exception factureZero = assertThrows(IllegalArgumentException.class, () -> marcel.createFacture(0));
-		assertEquals("Le montant d'une facture ne peut pas Ãªtre nÃ©gatif.", factureZero.getMessage());
+		assertEquals("Le montant d'une facture ne peut pas être négatif.", factureZero.getMessage());
 	}
 
 }
