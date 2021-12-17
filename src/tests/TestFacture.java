@@ -61,7 +61,7 @@ class TestFacture
 	@Test
 	void testCopie()
 	{
-		Facture copieFactureMarcel1 = factureMarcel1.copy();
+		Facture copieFactureMarcel1 = factureMarcel1.copie();
 		assertEquals(factureMarcel1.getDate(), copieFactureMarcel1.getDate());
 		assertEquals(factureMarcel1.getMontant(), copieFactureMarcel1.getMontant());
 		assertNotEquals(copieFactureMarcel1, factureMarcel1);
