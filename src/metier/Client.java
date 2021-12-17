@@ -11,7 +11,7 @@ public class Client
 	private List<Facture> factures = new ArrayList<Facture>();
 	private static List<Client> clients = new ArrayList<Client>();
 	/** 
-	 * Crée un client.
+	 * CrÃ©e un client.
 	 * @param nom le nom du client. 
 	 */
 	
@@ -42,15 +42,15 @@ public class Client
 	}
 	
 	/**
-	 * Créé une facture.
+	 * CrÃ©Ã© une facture.
 	 * @param montant Le montant de la facture.
-	 * @return la facture créée.
+	 * @return la facture crÃ©Ã©e.
 	 */
 	
 	public Facture createFacture(int montant)
 	{
 		if (montant < 0) {
-			System.out.println("Le montant d'une facture ne peut pas être négatif.");
+			System.out.println("Le montant d'une facture ne peut pas Ãªtre nÃ©gatif.");
 			return null;
 		}
 		else 
@@ -88,16 +88,16 @@ public class Client
 	}
 
 	/**
-	 * Créé une facture en précisant si elle est reglée.
+	 * CrÃ©Ã© une facture en prÃ©cisant si elle est reglÃ©e.
 	 * param montant Le montant de la facture.
-	 * param estreglee() Vrai si la facture est reglée.
-	 * @return la facture créée.
+	 * param estreglee() Vrai si la facture est reglÃ©e.
+	 * @return la facture crÃ©Ã©e.
 	 */
 
 	public Facture createFacture(int montant, boolean estreglee)
 	{
 		if (montant < 0) {
-			System.out.println("Le montant d'une facture ne peut pas être négatif.");
+			System.out.println("Le montant d'une facture ne peut pas Ãªtre nÃ©gatif.");
 			return null;
 		}
 		else 
@@ -109,11 +109,11 @@ public class Client
 	}	
 	
 	/**
-	 * Retourne la liste des factures reglées. 
-	 * @return la liste des factures reglées.
+	 * Retourne la liste des factures reglÃ©es. 
+	 * @return la liste des factures reglÃ©es.
 	 */
 
-	public List<Facture> getFacturesReglees()
+	public List<Facture> facturesReglees()
 	{
 
 		List<Facture> Facture = new ArrayList<Facture>();
@@ -128,7 +128,7 @@ public class Client
 	}
 
 	/**
-	 * Retourne tous les clients créés.
+	 * Retourne tous les clients crÃ©Ã©s.
 	 * @return une copie de la liste de tous les clients.
 	 */
 	public static List<Client> tous()
