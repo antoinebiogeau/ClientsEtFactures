@@ -71,7 +71,7 @@ public class Facture
 	 * @return une copie de la facture.
 	 */
 
-	public Facture copy()
+	public Facture copie()
 	{
 		return client.createFacture(getMontant());
 	}
