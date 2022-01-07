@@ -10,11 +10,11 @@ public class Client
 	public String nom;
 	private List<Facture> factures = new ArrayList<Facture>();
 	private static List<Client> clients = new ArrayList<Client>();
-	/** 
+	/**
 	 * Crée un client.
-	 * @param nom le nom du client. 
+	 * @param nom le nom du client.
 	 */
-	
+
 	public Client(String nom)
 	{
 		this.nom = nom;
@@ -25,44 +25,43 @@ public class Client
 	 * Retourne le nom du client.
 	 * @return le nom du client.
 	 */
-	
+
 	public String getNom()
 	{
 		return nom;
 	}
-	
+
 	/**
 	 * Modifie le nom du client.
 	 * @param nom le nom du client.
 	 */
-	
+
 	public void setNom(String nom)
 	{
 		this.nom = nom;
 	}
-	
+
 	/**
 	 * Créé une facture.
 	 * @param montant Le montant de la facture.
 	 * @return la facture créée.
 	 */
-	
+
 	public Facture createFacture(int montant)
 	{
 		if (montant < 0) {
 			System.out.println("Le montant d'une facture ne peut pas être négatif.");
 			return null;
 		}
-		else 
-		{
+		else {
 			Facture facture = new Facture(montant, this, false, LocalDate.now());
 			factures.add(facture);
 			return facture;
 		}
 	}
-	
+
 	/**
-	 * Retourne une copie de la liste des factures du client. 
+	 * Retourne une copie de la liste des factures du client.
 	 * @return une copie de la liste des factures du client.
 	 */
 
@@ -71,12 +70,12 @@ public class Client
 		List<Facture> Facture = new ArrayList<Facture>(factures);
 		return Facture;
 	}
-	
+
 	/**
 	 * Retourne la somme des montants des factures.
 	 * @return la somme des montants des factures.
 	 */
-	
+
 	public int sommeMontants()
 	{
 		int montant=0;
@@ -96,35 +95,23 @@ public class Client
 
 	public Facture createFacture(int montant, boolean estreglee)
 	{
-		if (montant < 0) {
-			System.out.println("Le montant d'une facture ne peut pas être négatif.");
-			return null;
-		}
-		else 
-		{
-			Facture facture = new Facture(montant, this, estreglee, LocalDate.now());
-			factures.add(facture);
-			return facture;
-		}
-	}	
-	
+		Facture facture = new Facture(montant, this, estreglee, LocalDate.now());
+		factures.add(facture);
+		return facture;
+	}
+
 	/**
-	 * Retourne la liste des factures reglées. 
+	 * Retourne la liste des factures reglées.
 	 * @return la liste des factures reglées.
 	 */
 
 	public List<Facture> facturesReglees()
 	{
-
-		List<Facture> Facture = new ArrayList<Facture>();
-		for(int i = 0;i<factures.size();i++)
-		{
-			if(factures.get(i).estReglee)
-			{
-				Facture.add(factures.get(i));
-			}
-		}
-		return Facture;
+		List<Facture> FacturesReglees = new ArrayList<>();
+		for(Facture facture : factures)
+			if (facture.estReglee())
+				FacturesReglees.add(facture);
+		return FacturesReglees;
 	}
 
 	/**
@@ -135,11 +122,11 @@ public class Client
 	{
 		return new ArrayList<Client>(clients);
 	}
-	
+
 	/**
 	 * Supprime le client.
 	 */
-	
+
 	public void delete()
 	{
 		clients.remove(this);

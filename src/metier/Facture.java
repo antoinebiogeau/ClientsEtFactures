@@ -23,7 +23,7 @@ public class Facture
 	 * Retourne le client à qui est adressée la facture..
 	 * @return le client.
 	 */
-	
+
 	public Client getClient()
 	{
 		return client;
@@ -33,7 +33,7 @@ public class Facture
 	 * Retourne le montant de la facture.
 	 * @return le montant de la facture.
 	 */
-	
+
 	public int getMontant()
 	{
 		return montant;
@@ -43,9 +43,8 @@ public class Facture
 	 * Retourne vrai si la facture est reglée.
 	 * @return vrai ssi la facture est reglée.
 	 */
-	
-	public boolean estReglee() 
-	{
+
+	public boolean estReglee() {
 		return estReglee;
 	}
 
@@ -53,7 +52,7 @@ public class Facture
 	 * Retourne la date de la facture.
 	 * @return la date de la facture.
 	 */
-	
+
 	public LocalDate getDate()
 	{
 		return date;
@@ -62,7 +61,7 @@ public class Facture
 	/**
 	 * Supprime la facture
 	 */
-	
+
 	public void delete()
 	{
 		client.deleteFacture(this);
@@ -71,8 +70,8 @@ public class Facture
 	 * Duplique la facture.
 	 * @return une copie de la facture.
 	 */
-	
-	public Facture copie()
+
+	public Facture copy()
 	{
 		return client.createFacture(getMontant());
 	}
